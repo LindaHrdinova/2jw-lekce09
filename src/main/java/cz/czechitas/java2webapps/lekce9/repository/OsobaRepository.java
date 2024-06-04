@@ -45,4 +45,7 @@ public interface OsobaRepository extends JpaRepository<Osoba, Long> {
      */
     @Query("SELECT o FROM Osoba o WHERE YEAR(o.datumNarozeni) BETWEEN :pocatecniRok AND :koncovyRok")
     Page<Osoba> findByRok(@Param("pocatecniRok") int pocatecniRok, @Param("koncovyRok") int koncovyRok, Pageable pageable);
+
+    @Query("SELECT o FROM Osoba o WHERE o.prijmeni LIKE :zatcatekPrijmeni% AND o.jmeno LIKE :zacatekJmena%")
+    Page<Osoba> findByPrijmeniAJmeno(@Param("zatcatekPrijmeni") String zatcatekPrijmeni, @Param("zacatekJmena") String zacatekJmena, Pageable pageable);
 }

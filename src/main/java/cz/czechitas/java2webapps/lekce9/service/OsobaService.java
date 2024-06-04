@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 /**
  * Služba pro práci s osobami a adresami.
  */
@@ -33,4 +35,22 @@ public class OsobaService {
     public Page<Osoba> seznamDleRokuNarozeni(RokNarozeniForm form, Pageable pageable) {
         return osobaRepository.findByRok(form.getOd(), form.getDo(), pageable);
     }
+
+    public Page<Osoba> seznamDleZacatkuPrijmeni(String prijmeni, Pageable pageable) {
+        return osobaRepository.findByPrijmeniStartingWithIgnoreCase(prijmeni, pageable);
+    }
+
+    public Page<Osoba> seznamDleNazvuObce(String obec, Pageable pageable) {
+        return osobaRepository.findOsobaByAdresa_Obec(obec, pageable);
+    }
+
+    public Page<Osoba> seznamDleVeku(int vek, Pageable pageable) {
+        LocalDate date = LocalDate.now().minusYears(vek);
+        return osobaRepository.findByDatumNarozeniBefore(date, pageable);
+    }
+
+    public Page<Osoba> seznamDleZacatkuPrijmeniAJmena( String zacatekPrijmeni, String zacatekJmena, Pageable pageable) {
+        return osobaRepository.findByPrijmeniAJmeno(zacatekPrijmeni, zacatekJmena, pageable);
+    }
+
 }

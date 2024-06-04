@@ -52,16 +52,14 @@ public class OsobaController {
     public ModelAndView prijmeni(@ModelAttribute("prijmeni") @Valid @NotBlank String prijmeni, @PageableDefault() Pageable pageable) {
         return new ModelAndView("osoby")
                 .addObject("formInclude", "prijmeni.ftlh")
-                //TODO vytvořit a použít správnou metodu pro načtení dat
-                .addObject("osoby", service.seznamOsob(pageable));
+                .addObject("osoby", service.seznamDleZacatkuPrijmeni(prijmeni, pageable));
     }
 
     @GetMapping("/obec")
     public ModelAndView obec(@ModelAttribute("obec") @Valid @NotBlank String obec, @PageableDefault(sort = {"prijmeni", "jmeno"}) Pageable pageable) {
         return new ModelAndView("osoby-s-adresou")
                 .addObject("formInclude", "obec.ftlh")
-                //TODO vytvořit a použít správnou metodu pro načtení dat
-                .addObject("osoby", service.seznamOsob(pageable));
+                .addObject("osoby", service.seznamDleNazvuObce(obec, pageable));
     }
 
     @GetMapping("/minimalni-vek")
@@ -69,7 +67,14 @@ public class OsobaController {
         return new ModelAndView("osoby")
                 .addObject("formInclude", "minimalni-vek.ftlh")
                 //TODO vytvořit a použít správnou metodu pro načtení dat
-                .addObject("osoby", service.seznamOsob(pageable));
+                .addObject("osoby", service.seznamDleVeku(vek, pageable));
+    }
+
+    @GetMapping("/zacatekPrijmeniAJmena")
+    public ModelAndView zacatekPrijmeniAJmena(@ModelAttribute("prijmeniAJmeno") @Valid @NotBlank String prijmeni, @NotBlank String jmeno, @PageableDefault() Pageable pageable) {
+        return new ModelAndView("osoby")
+                .addObject("formInclude", "zacatekPrijmeniAJmena.ftlh")
+                .addObject("osoby", service.seznamDleZacatkuPrijmeniAJmena(prijmeni, jmeno,  pageable));
     }
 
     @ModelAttribute("currentYear")
