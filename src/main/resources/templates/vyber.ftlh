@@ -27,4 +27,9 @@
         <h4>Podle věku</h4>
         [#include "/_forms/minimalni-vek.ftlh"]
     </section>
+
+    <section>
+        <h4>Podle začátku přijmení a jména</h4>
+        [#include "/_forms/zacatekPrijmeniAJmena.ftlh"]
+    </section>
 [/@c.page]

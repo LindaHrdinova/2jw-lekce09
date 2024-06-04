@@ -1,11 +1,11 @@
 [#ftl]
 <form action="/zacatekPrijmeniAJmena" method="get">
     <div class="row">
-        <div class="ten columns">
+        <div class="five columns">
             <label for="prijmeni">Začátek příjmení</label>
             <input id="prijmeni" name="prijmeni" class="u-full-width" type="search" value="${prijmeni!}">
         </div>
-        <div class="ten columns">
+        <div class="five columns">
             <label for="jmeno">Začátek jména</label>
             <input id="jmeno" name="jmeno" class="u-full-width" type="search" value="${jmeno!}">
         </div>

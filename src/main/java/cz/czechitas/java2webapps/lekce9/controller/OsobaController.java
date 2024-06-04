@@ -71,7 +71,7 @@ public class OsobaController {
     }
 
     @GetMapping("/zacatekPrijmeniAJmena")
-    public ModelAndView zacatekPrijmeniAJmena(@ModelAttribute("prijmeniAJmeno") @Valid @NotBlank String prijmeni, @NotBlank String jmeno, @PageableDefault() Pageable pageable) {
+    public ModelAndView zacatekPrijmeniAJmena(@ModelAttribute("zacatekPrijmeniAJmena") @Valid @NotBlank String prijmeni, @NotBlank String jmeno, @PageableDefault() Pageable pageable) {
         return new ModelAndView("osoby")
                 .addObject("formInclude", "zacatekPrijmeniAJmena.ftlh")
                 .addObject("osoby", service.seznamDleZacatkuPrijmeniAJmena(prijmeni, jmeno,  pageable));
